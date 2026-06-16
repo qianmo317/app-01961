@@ -1,0 +1,52 @@
+:root {
+    /* Colors */
+    --color-primary: #4CAF50;
+    --color-primary-dark: #388E3C;
+    --color-primary-light: #81C784;
+    --color-secondary: #FF9800;
+    --color-secondary-dark: #F57C00;
+    --color-danger: #F44336;
+    --color-danger-dark: #D32F2F;
+    --color-bg-dark: #1a1a2e;
+    --color-bg-medium: #16213e;
+    --color-bg-light: #0f3460;
+    --color-bg-card: rgba(255, 255, 255, 0.08);
+    --color-text: #e0e0e0;
+    --color-text-light: #b0b0b0;
+    --color-text-white: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-shadow: rgba(0, 0, 0, 0.3);
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-round: 50%;
+
+    /* Font Sizes */
+    --font-xs: 12px;
+    --font-sm: 14px;
+    --font-md: 16px;
+    --font-lg: 20px;
+    --font-xl: 28px;
+    --font-xxl: 42px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+
+    /* Game specific */
+    --cell-width: 80px;
+    --cell-height: 100px;
+    --topbar-height: 48px;
+    --plantbar-height: 72px;
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物大战僵尸 - Web Game</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/toast.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 主菜单 -->
+        <div id="menu-screen" class="screen active">
+            <div class="menu-container">
+                <div class="menu-title">
+                    <h1>🌻 植物大战僵尸 🧟</h1>
+                    <p class="subtitle">Plants vs. Zombies - Web Edition</p>
+                </div>
+                <div class="menu-buttons">
+                    <button class="btn btn-primary btn-lg" id="btn-start">
+                        <span>开始游戏</span><span class="btn-arrow">→</span>
+                    </button>
+                    <button class="btn btn-secondary btn-lg" id="btn-almanac">
+                        <span>图鉴</span><span class="btn-arrow">→</span>
+                    </button>
+                    <button class="btn btn-secondary btn-lg" id="btn-help">
+                        <span>帮助</span><span class="btn-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 图鉴界面 -->
+        <div id="almanac-screen" class="screen">
+            <div class="almanac-container">
+                <div class="almanac-header">
+                    <h2>📖 图鉴</h2>
+                    <button class="btn btn-back" id="btn-almanac-back">← 返回</button>
+                </div>
+                <div class="almanac-tabs">
+                    <button class="tab-btn active" data-tab="plants">🌱 植物 (20)</button>
+                    <button class="tab-btn" data-tab="zombies">🧟 僵尸 (10)</button>
+                </div>
+                <div id="almanac-content" class="almanac-grid"></div>
+            </div>
+        </div>
+
+        <!-- 帮助界面 -->
+        <div id="help-screen" class="screen">
+            <div class="help-container">
+                <div class="help-header">
+                    <h2>❓ 游戏帮助</h2>
+                    <button class="btn btn-back" id="btn-help-back">← 返回</button>
+                </div>
+                <div class="help-content">
+                    <div class="help-card">
+                        <h3>🎯 游戏目标</h3>
+                        <p>阻止僵尸穿过草坪进入你的房子。种植各种植物来防御僵尸的进攻。</p>
+                    </div>
+                    <div class="help-card">
+                        <h3>☀️ 阳光系统</h3>
+                        <p>阳光是种植植物的货币。天空会定期掉落阳光，向日葵也会产生阳光。点击收集阳光。</p>
+                    </div>
+                    <div class="help-card">
+                        <h3>🌱 种植植物</h3>
+                        <p>点击底部植物卡片选择植物，然后点击草坪格子种植。每种植物有不同的阳光消耗。</p>
+                    </div>
+                    <div class="help-card">
+                        <h3>🧟 僵尸波次</h3>
+                        <p>僵尸会分波次进攻，每波僵尸数量和种类会逐渐增加。消灭所有波次即可获胜。</p>
+                    </div>
+                    <div class="help-card">
+                        <h3>⌨️ 操作说明</h3>
+                        <p>鼠标左键：选择植物 / 种植 / 收集阳光<br>鼠标右键：取消选择</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏界面 -->
+        <div id="game-screen" class="screen">
+            <div class="game-wrapper">
+                <!-- 顶部信息栏 -->
+                <div class="game-topbar">
+                    <div class="topbar-left"></div>
+                    <div class="topbar-center">
+                        <span class="wave-info" id="wave-info">波次: 1/10</span>
+                        <div class="sun-counter" id="sun-counter">
+                            <span class="sun-icon">☀️</span>
+                            <span class="sun-value" id="sun-value">50</span>
+                        </div>
+                        <button class="btn btn-sm btn-secondary" id="btn-pause">⏸ 暂停</button>
+                        <button class="btn btn-sm btn-danger" id="btn-quit">✕ 退出</button>
+                        <button class="btn btn-sm btn-secondary" id="btn-restart">🔄 重开</button>
+                    </div>
+                    <div class="topbar-right"></div>
+                </div>
+
+                <!-- 植物选择栏 -->
+                <div class="plant-bar" id="plant-bar"></div>
+
+                <!-- 游戏画布 -->
+                <canvas id="game-canvas"></canvas>
+            </div>
+
+            <!-- 游戏结束 -->
+            <div class="overlay" id="result-overlay">
+                <div class="modal" id="result-modal">
+                    <h2 id="result-title"></h2>
+                    <p id="result-desc"></p>
+                    <div class="modal-buttons">
+                        <button class="btn btn-primary" id="btn-retry">再来一局</button>
+                        <button class="btn btn-secondary" id="btn-home">返回主页</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 确认框 -->
+            <div class="overlay" id="confirm-overlay">
+                <div class="modal">
+                    <h2 id="confirm-title"></h2>
+                    <p id="confirm-desc"></p>
+                    <div class="modal-buttons">
+                        <button class="btn btn-primary" id="btn-confirm-yes">确认</button>
+                        <button class="btn btn-secondary" id="btn-confirm-no">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 容器 -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/config/constants.js"></script>
+    <script src="js/config/plants.js"></script>
+    <script src="js/config/zombies.js"></script>
+    <script src="js/config/zombieSprites.js"></script>
+    <script src="js/utils/toast.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/render/renderer.js"></script>
+    <script src="js/render/plantRenderer.js"></script>
+    <script src="js/render/zombieRenderer.js"></script>
+    <script src="js/game/sun.js"></script>
+    <script src="js/game/projectile.js"></script>
+    <script src="js/game/plant.js"></script>
+    <script src="js/game/zombie.js"></script>
+    <script src="js/game/wave.js"></script>
+    <script src="js/game/engine.js"></script>
+    <script src="js/ui/menu.js"></script>
+    <script src="js/ui/almanac.js"></script>
+    <script src="js/ui/gameUI.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

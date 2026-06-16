@@ -1,0 +1,10 @@
+services:
+  frontend-user:
+    build:
+      context: ./frontend-user
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    volumes:
+      - ./frontend-user/src:/usr/share/nginx/html
+    restart: unless-stopped
