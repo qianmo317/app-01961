@@ -230,6 +230,7 @@ class GameEngine {
             this.updateSunDisplay();
             this.selectedPlant = null;
             this.updatePlantBarSelection();
+            soundManager.playPlant();
         }
     }
 

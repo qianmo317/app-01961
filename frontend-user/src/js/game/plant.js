@@ -152,6 +152,7 @@ class PlantEntity {
                 z.takeDamage(this.data.explodeDamage);
                 engine.addExplosion(pos.x, pos.y, 60, '#C4A265', '#8B6914', 500);
                 this.active = false;
+                soundManager.playExplosion();
                 Toast.info('💥 土豆雷爆炸！');
                 return;
             }
@@ -237,6 +238,7 @@ class PlantEntity {
                     this.jumpTarget.takeDamage(this.data.squashDamage);
                 }
                 engine.addExplosion(this.jumpTarget.x, pos.y, 40, '#556B2F', '#228B22', 400);
+                soundManager.playExplosion();
                 this.active = false;
             }
             return;
@@ -262,6 +264,7 @@ class PlantEntity {
             const fx = cfg.GRID_OFFSET_X + c * cfg.CELL_WIDTH + cfg.CELL_WIDTH / 2;
             engine.addExplosion(fx, pos.y, 40, '#FF4500', '#FF6B35', 600);
         }
+        soundManager.playExplosion();
         Toast.info('🌶️ 火爆辣椒燃烧了整行！');
         this.active = false;
     }
@@ -280,6 +283,7 @@ class PlantEntity {
             }
         });
         engine.addExplosion(pos.x, pos.y, 80, '#DC143C', '#FF4500', 700);
+        soundManager.playExplosion();
         Toast.info('🍒 樱桃炸弹爆炸！');
         this.active = false;
     }

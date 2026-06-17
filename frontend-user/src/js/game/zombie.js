@@ -64,6 +64,11 @@ class ZombieEntity {
             if (this.hitFlash < 0) this.hitFlash = 0;
         }
 
+        // 受击音效冷却
+        if (this.hitSoundCooldown > 0) {
+            this.hitSoundCooldown -= dt * speed;
+        }
+
         // 读报僵尸激怒
         if (this.data.id === 'newspaper' && !this.enraged && this.armorHp <= 0) {
             this.enraged = true;
@@ -166,6 +171,11 @@ class ZombieEntity {
         }
         // 受击闪烁
         this.hitFlash = 80;
+        // 受击音效（带冷却避免太频繁）
+        if (!this.hitSoundCooldown || this.hitSoundCooldown <= 0) {
+            soundManager.playHit();
+            this.hitSoundCooldown = 80;
+        }
         if (this.hp <= 0) {
             this.active = false;
         }

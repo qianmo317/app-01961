@@ -42,6 +42,26 @@ class GameUI {
             }
         });
 
+        // 静音切换
+        const btnMute = document.getElementById('btn-mute');
+        const updateMuteButton = () => {
+            if (soundManager.muted) {
+                btnMute.innerHTML = '🔇 静音';
+                btnMute.classList.add('btn-primary');
+                btnMute.classList.remove('btn-secondary');
+            } else {
+                btnMute.innerHTML = '🔊 音效';
+                btnMute.classList.remove('btn-primary');
+                btnMute.classList.add('btn-secondary');
+            }
+        };
+        btnMute.addEventListener('click', () => {
+            soundManager.toggleMute();
+            updateMuteButton();
+        });
+        // 初始化按钮状态
+        updateMuteButton();
+
         // 重新开始
         document.getElementById('btn-restart').addEventListener('click', () => {
             this.showConfirm('🔄 重新开始', '确定要重新开始游戏吗？', () => {
