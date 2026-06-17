@@ -164,8 +164,8 @@ class ZombieEntity {
         } else {
             this.hp -= amount;
         }
-        // 受击闪烁
         this.hitFlash = 80;
+        SoundManager.playHit();
         if (this.hp <= 0) {
             this.active = false;
         }
