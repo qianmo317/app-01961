@@ -8,6 +8,8 @@ class MenuUI {
 
     init() {
         document.getElementById('btn-start').addEventListener('click', () => {
+            soundManager.init();
+            soundManager.ensureContext();
             this.app.showScreen('game');
             this.app.engine.start();
         });
