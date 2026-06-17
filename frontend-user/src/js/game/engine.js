@@ -193,19 +193,20 @@ class GameEngine {
     }
 
     onClick(e) {
+        SoundManager.init();
+        SoundManager.ensureContext();
+
         const rect = this.canvas.getBoundingClientRect();
         const scaleX = this.canvas.width / rect.width;
         const scaleY = this.canvas.height / rect.height;
         const mx = (e.clientX - rect.left) * scaleX;
         const my = (e.clientY - rect.top) * scaleY;
 
-        // 尝试收集阳光
         if (this.sunManager.tryCollect(mx, my)) return;
 
         const cell = Helpers.pixelToCell(mx, my);
         if (!cell) return;
 
-        // 种植
         if (this.selectedPlant) {
             this.tryPlant(cell.row, cell.col);
         }
@@ -230,6 +231,7 @@ class GameEngine {
             this.updateSunDisplay();
             this.selectedPlant = null;
             this.updatePlantBarSelection();
+            SoundManager.playPlant();
         }
     }
 
@@ -287,8 +289,8 @@ class GameEngine {
             timer: 0,
             active: true
         });
-        // 爆炸时生成粒子
         this.spawnParticles(x, y, color, 8);
+        SoundManager.playExplosion();
     }
 
     /** 生成粒子效果 */

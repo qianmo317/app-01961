@@ -136,10 +136,10 @@ class SunManager {
             if (dist < hitRadius) {
                 sun.collecting = true;
                 sun.showValue = true;
-                // 飞向画布顶部中央（阳光计数器在 canvas 上方，用 canvas 内坐标）
                 const canvas = document.getElementById('game-canvas');
                 sun.targetX = canvas.width / 2;
                 sun.targetY = 0;
+                SoundManager.playSunCollect();
                 return true;
             }
         }

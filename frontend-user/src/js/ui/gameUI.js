@@ -26,6 +26,22 @@ class GameUI {
             engine.resume();
         });
 
+        // 音效开关
+        const btnSound = document.getElementById('btn-sound');
+        btnSound.addEventListener('click', () => {
+            SoundManager.init();
+            const muted = SoundManager.toggleMute();
+            if (muted) {
+                btnSound.innerHTML = '🔇 静音';
+                btnSound.classList.remove('btn-secondary');
+                btnSound.classList.add('btn-primary');
+            } else {
+                btnSound.innerHTML = '🔊 音效';
+                btnSound.classList.remove('btn-primary');
+                btnSound.classList.add('btn-secondary');
+            }
+        });
+
         // 暂停/继续 切换
         const btnPause = document.getElementById('btn-pause');
         btnPause.addEventListener('click', () => {
@@ -99,6 +115,8 @@ class GameUI {
             `;
             card.title = `${plant.name} - ${plant.desc} (${plant.cost}☀️)`;
             card.addEventListener('click', () => {
+                SoundManager.init();
+                SoundManager.ensureContext();
                 this.app.engine.selectPlant(plant);
             });
             bar.appendChild(card);
