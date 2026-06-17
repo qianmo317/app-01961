@@ -140,6 +140,7 @@ class SunManager {
                 const canvas = document.getElementById('game-canvas');
                 sun.targetX = canvas.width / 2;
                 sun.targetY = 0;
+                SoundManager.playSunCollect();
                 return true;
             }
         }

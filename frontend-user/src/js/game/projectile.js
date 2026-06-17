@@ -114,6 +114,7 @@ class ProjectileManager {
                     z.takeDamage(damage);
                     if (slow) z.applySlow(slow, 3000);
                     p.active = false;
+                    SoundManager.playHit();
                     return;
                 }
             } else {
@@ -122,6 +123,7 @@ class ProjectileManager {
                     z.takeDamage(damage);
                     if (slow) z.applySlow(slow, 3000);
                     p.active = false;
+                    SoundManager.playHit();
                     if (currentType && currentType.splash) {
                         this.splashDamage(p.x, p.y, p.row, currentType.splash, damage * 0.5, zombies);
                     }
@@ -138,6 +140,7 @@ class ProjectileManager {
             if (Math.abs(z.x - p.x) < 25) {
                 z.takeDamage(pType.damage);
                 hit = true;
+                SoundManager.playHit();
                 if (pType.splash) {
                     this.splashDamage(p.x, p.groundY, p.row, pType.splash, pType.damage * 0.5, zombies);
                 }

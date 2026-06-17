@@ -26,6 +26,21 @@ class GameUI {
             engine.resume();
         });
 
+        // 静音切换
+        const btnMute = document.getElementById('btn-mute');
+        btnMute.addEventListener('click', () => {
+            const muted = SoundManager.toggleMute();
+            if (muted) {
+                btnMute.innerHTML = '🔇 静音';
+                btnMute.classList.remove('btn-secondary');
+                btnMute.classList.add('btn-primary');
+            } else {
+                btnMute.innerHTML = '🔊 音效';
+                btnMute.classList.remove('btn-primary');
+                btnMute.classList.add('btn-secondary');
+            }
+        });
+
         // 暂停/继续 切换
         const btnPause = document.getElementById('btn-pause');
         btnPause.addEventListener('click', () => {
