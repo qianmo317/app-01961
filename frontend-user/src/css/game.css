@@ -54,6 +54,11 @@
     white-space: nowrap;
 }
 
+/* 静音状态：降低不透明度以示区分 */
+#btn-mute.btn-mute-off {
+    opacity: 0.55;
+}
+
 .sun-counter {
     display: flex;
     align-items: center;

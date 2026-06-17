@@ -230,6 +230,7 @@ class GameEngine {
             this.updateSunDisplay();
             this.selectedPlant = null;
             this.updatePlantBarSelection();
+            SoundManager.playPlant();
         }
     }
 
@@ -289,6 +290,7 @@ class GameEngine {
         });
         // 爆炸时生成粒子
         this.spawnParticles(x, y, color, 8);
+        SoundManager.playExplosion();
     }
 
     /** 生成粒子效果 */
