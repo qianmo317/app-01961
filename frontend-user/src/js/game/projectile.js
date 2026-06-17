@@ -112,6 +112,7 @@ class ProjectileManager {
                 const zy = z.getY();
                 if (Math.abs(z.x - p.x) < 20 && Math.abs(zy - p.y) < cfg.CELL_HEIGHT * 0.4) {
                     z.takeDamage(damage);
+                    SoundManager.playHit();
                     if (slow) z.applySlow(slow, 3000);
                     p.active = false;
                     return;
@@ -120,6 +121,7 @@ class ProjectileManager {
                 if (z.row !== p.row) continue;
                 if (Math.abs(z.x - p.x) < 20) {
                     z.takeDamage(damage);
+                    SoundManager.playHit();
                     if (slow) z.applySlow(slow, 3000);
                     p.active = false;
                     if (currentType && currentType.splash) {

@@ -42,6 +42,14 @@ class GameUI {
             }
         });
 
+        // 静音开关 - 控制所有音效，立即生效，不影响游戏进度
+        const btnMute = document.getElementById('btn-mute');
+        this.updateMuteButton();
+        btnMute.addEventListener('click', () => {
+            SoundManager.toggleMute();
+            this.updateMuteButton();
+        });
+
         // 重新开始
         document.getElementById('btn-restart').addEventListener('click', () => {
             this.showConfirm('🔄 重新开始', '确定要重新开始游戏吗？', () => {
@@ -84,6 +92,19 @@ class GameUI {
         document.getElementById('confirm-title').textContent = title;
         document.getElementById('confirm-desc').textContent = desc;
         document.getElementById('confirm-overlay').classList.add('active');
+    }
+
+    /** 同步静音按钮的图标与状态 */
+    updateMuteButton() {
+        const btnMute = document.getElementById('btn-mute');
+        if (!btnMute) return;
+        if (SoundManager.isMuted()) {
+            btnMute.innerHTML = '🔇 音效';
+            btnMute.classList.add('btn-mute-off');
+        } else {
+            btnMute.innerHTML = '🔊 音效';
+            btnMute.classList.remove('btn-mute-off');
+        }
     }
 
     buildPlantBar() {
